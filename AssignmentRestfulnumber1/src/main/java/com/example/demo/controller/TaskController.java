@@ -48,9 +48,9 @@ public class TaskController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
     //update
-    @RequestMapping(value = "/task/", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateTask(@RequestBody Task task) throws ParseException{
-        Task currentTask=taskService.update(task.getTasksId(), task.getDetail(),task.getEndDate(), task.getNameTasks(),task.getStartDate());
+    @RequestMapping(value = "/task/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateTask(@PathVariable("id") int id,@RequestBody Task task) throws ParseException{
+        Task currentTask=taskService.update(id, task.getDetail(),task.getEndDate(), task.getNameTasks(),task.getStartDate());
         return new ResponseEntity<Task>(currentTask, HttpStatus.OK);
     }
     //delete 1 entity
